@@ -1,0 +1,6 @@
+services:
+  iplace-client:
+    image: iplace-client
+    container_name: iplace-client
+    restart: unless-stopped
+    network_mode: host
