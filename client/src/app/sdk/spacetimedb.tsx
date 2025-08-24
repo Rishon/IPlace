@@ -36,7 +36,7 @@ export default function SpacetimeDB() {
 
         setConn(
             DbConnection.builder()
-                .withUri('ws://iplace-ws.rishon.systems')
+                .withUri(process.env.NEXT_PUBLIC_SPACETIMEDB_URI || 'ws://127.0.0.1:3001')
                 .withModuleName('iplace-live')
                 .withToken(localStorage.getItem('auth_token') || '')
                 .onConnect(onConnect)

@@ -2,17 +2,17 @@ using SpacetimeDB;
 
 public static partial class Module
 {
-    [SpacetimeDB.Table]
-    public partial struct Tile
+    [Table]
+    public partial class Tile
     {
-        [SpacetimeDB.AutoInc]
-        [SpacetimeDB.PrimaryKey]
+        [AutoInc]
+        [PrimaryKey]
         public int Id;
         public float Latitude;
         public float Longitude;
     }
 
-    [SpacetimeDB.Reducer]
+    [Reducer]
     public static void AddTile(ReducerContext ctx, float latitude, float longitude)
     {
         var tile = ctx.Db.Tile.Insert(new Tile { Latitude = latitude, Longitude = longitude });
