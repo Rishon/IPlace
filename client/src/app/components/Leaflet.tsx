@@ -4,6 +4,9 @@
 import { useEffect, useRef } from "react";
 import "leaflet/dist/leaflet.css";
 
+// Spacetime DB
+import { addTile } from "@/app/sdk/spacetimedb";
+
 const LeafletMap = () => {
     const mapRef = useRef<HTMLDivElement>(null);
     const mapInstance = useRef<L.Map | null>(null);
@@ -86,6 +89,14 @@ const LeafletMap = () => {
                     map.removeLayer(hoverRectRef.current);
                     hoverRectRef.current = null;
                 }
+            });
+
+            map.on("click", (e: L.LeafletMouseEvent) => {
+                const lat = e.latlng.lat;
+                const lng = e.latlng.lng;
+                addTile({ latitude: lat, longitude: lng });
+
+                console.log(`Map clicked at: ${lat}, ${lng}`);
             });
         };
 
